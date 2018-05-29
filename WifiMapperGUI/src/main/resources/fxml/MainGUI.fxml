@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.web.WebView?>
+
+<VBox fx:id="root" prefHeight="528.0" prefWidth="859.0" stylesheets="@/styles/maingui.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.tauterra.wifimapper.wifimappergui.MainGUI">
+    <children>
+        <MenuBar VBox.vgrow="NEVER">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem disable="true" mnemonicParsing="false" onAction="#onNewAction" text="New" />
+                        <MenuItem mnemonicParsing="false" onAction="#onOpenAction" text="Open…" />
+                        <Menu fx:id="recentFilesMenu" mnemonicParsing="false" text="Open Recent" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#onCloseAction" text="Close" />
+                        <MenuItem disable="true" mnemonicParsing="false" text="Save" />
+                        <MenuItem disable="true" mnemonicParsing="false" text="Save As…" />
+                        <MenuItem disable="true" mnemonicParsing="false" text="Revert" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem disable="true" mnemonicParsing="false" text="Preferences…" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#onQuitAction" text="Quit" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                  <MenuItem mnemonicParsing="false" onAction="#doGoogleMapsAPIDialog" text="Google Maps API Key" />
+                  <SeparatorMenuItem disable="true" mnemonicParsing="false" />
+                        <MenuItem disable="true" mnemonicParsing="false" text="Undo" />
+                        <MenuItem disable="true" mnemonicParsing="false" text="Redo" />
+                        <SeparatorMenuItem disable="true" mnemonicParsing="false" />
+                        <MenuItem disable="true" mnemonicParsing="false" text="Cut" />
+                        <MenuItem disable="true" mnemonicParsing="false" text="Copy" />
+                        <MenuItem disable="true" mnemonicParsing="false" text="Paste" />
+                        <MenuItem disable="true" mnemonicParsing="false" text="Delete" />
+                        <SeparatorMenuItem disable="true" mnemonicParsing="false" />
+                        <MenuItem disable="true" mnemonicParsing="false" text="Select All" />
+                        <MenuItem disable="true" mnemonicParsing="false" text="Unselect All" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onAboutMenu" text="About WiFi Mapper" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <SplitPane dividerPositions="0.24970828471411902, 0.704784130688448" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+            <items>
+            <SplitPane>
+               <items>
+                  <ListView fx:id="networkList" prefHeight="200.0" prefWidth="200.0" />
+               </items>
+            </SplitPane>
+            <StackPane>
+               <children>
+                  <WebView fx:id="webview" prefHeight="200.0" prefWidth="200.0" />
+               </children>
+            </StackPane>
+            <StackPane>
+               <children>
+                  <SplitPane dividerPositions="0.3678646934460888" orientation="VERTICAL">
+                     <items>
+                        <TextArea fx:id="detailsText" editable="false" prefHeight="152.0" prefWidth="208.0" wrapText="true" />
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="14.0" layoutY="14.0" text="Map Style:" />
+                              <ChoiceBox fx:id="mapStyleChooser" layoutX="89.0" layoutY="9.0" AnchorPane.leftAnchor="89.0" AnchorPane.rightAnchor="10.0" />
+                              <Label layoutX="14.0" layoutY="54.0" text="Hex Size:" />
+                              <TextField fx:id="hexSizeChooser" layoutX="89.0" layoutY="49.0" prefHeight="26.0" prefWidth="161.0" promptText="Hex Size (m)" text="2.5" AnchorPane.leftAnchor="86.0" AnchorPane.rightAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                     </items>
+                  </SplitPane>
+               </children>
+            </StackPane>
+            </items>
+        </SplitPane>
+        <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
+            <children>
+                <Label fx:id="leftStatus" maxHeight="1.7976931348623157E308" maxWidth="-1.0" HBox.hgrow="ALWAYS">
+                </Label>
+                <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
+                <Label maxWidth="-1.0" HBox.hgrow="NEVER" />
+            </children>
+            <padding>
+                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+            </padding>
+        </HBox>
+    </children>
+</VBox>
