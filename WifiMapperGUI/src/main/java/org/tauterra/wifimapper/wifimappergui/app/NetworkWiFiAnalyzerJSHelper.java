@@ -68,6 +68,7 @@ public class NetworkWiFiAnalyzerJSHelper {
                 + "  cursor: \"pointer\"\n"
                 + "'}'\n"
                 + "'}');\n"
+                + "setupHoverListener();\n"
                 + "'}')();",
                  mapVar, geoJson);
     }

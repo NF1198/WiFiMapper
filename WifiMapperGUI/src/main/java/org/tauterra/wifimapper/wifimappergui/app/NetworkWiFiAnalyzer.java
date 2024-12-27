@@ -70,7 +70,9 @@ public final class NetworkWiFiAnalyzer {
                 + "                \"fill-opacity\": {16},\n"
                 + "                \"stroke-width\": {17},\n"
                 + "                \"stroke\": \"{18}\",\n"
-                + "                \"stroke-opacity\": {19}\n"
+                + "                \"stroke-opacity\": {19},\n"
+                + "                \"lat\": {20,number,0.00000000},\n"
+                + "                \"lon\": {21,number,0.00000000}\n"
                 + "            '}'\n"
                 + "        '}'");
         List<String> features = new ArrayList<>();
@@ -104,6 +106,7 @@ public final class NetworkWiFiAnalyzer {
             }
 
             double levelForColor = (b != maxBin) ? b.average() : 9999;
+            LatLonCoord center = invProjection.apply(new Coordinate(cx, cy));
             features.add(featureFormat.format(new Object[]{
                 latLons.get(0).getLon(), latLons.get(0).getLat(),
                 latLons.get(1).getLon(), latLons.get(1).getLat(),
@@ -117,7 +120,9 @@ public final class NetworkWiFiAnalyzer {
                 0.66,
                 0.5,
                 colorGradient.apply(levelForColor),
-                0.9
+                0.9,
+                center.getLat(),
+                center.getLon()
             }));
         }
         StringBuilder result = new StringBuilder();

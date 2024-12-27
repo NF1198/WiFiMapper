@@ -16,6 +16,10 @@
                 margin: 0;
                 padding: 0;
             }
+            /* Hide the close button in the InfoWindow */
+            .gm-ui-hover-effect {
+                display: none !important;
+            }
         </style>
     </head>
     <body>
@@ -25,10 +29,27 @@
             function initMap() {
                 map = new google.maps.Map(document.getElementById('map'), {
                     center: {lat: 35.085864, lng: -106.647582},
-                    zoom: 8,
+                    zoom: 8
                 });
-
             }
+
+            function setupHoverListener() {
+                map.data.addListener('mouseover', function (event) {
+                    const medianSignal = event.feature.getProperty('level');
+                    const lat = event.feature.getProperty('lat');
+                    const lon = event.feature.getProperty('lon');
+                    const infowindow = new google.maps.InfoWindow({
+                        content: `${medianSignal}`,
+                        position: {lat: lat, lng: lon},
+                        disableAutoPan: true // Optional: Prevent auto-panning
+                    });
+                    infowindow.open(map);
+
+                    map.data.addListener('mouseout', function () {
+                        infowindow.close();
+                    });
+                });
+            };
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=$$GOOGLE_MAPS_API_KEY$$&callback=initMap&libraries=&v=3.56&loading=async" async></script>
     </body>
