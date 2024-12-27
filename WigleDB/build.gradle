@@ -14,5 +14,5 @@ if (!hasProperty('mainClass')) {
 }
 
 dependencies {
-    runtime group: 'org.xerial', name: 'sqlite-jdbc', version: '3.21.0.1'
+    runtimeOnly group: 'org.xerial', name: 'sqlite-jdbc', version: '3.21.0.1'
 }

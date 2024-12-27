@@ -1,33 +1,28 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.4'
-    }
+plugins {
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'java'
+    id 'application'
 }
 
-apply plugin: 'java'
-apply plugin: 'application'
-apply plugin: 'com.github.johnrengelman.shadow'
-
-if (!hasProperty('mainClass')) {
-    ext.mainClass = 'org.tauterra.wifimapper.wifimappergui.WiFiMapperGUI'
+application {
+    mainClass = 'org.tauterra.wifimapper.wifimappergui.WiFiMapperGUI'
 }
 
-//mainClassName = 'org.tauterra.wifimapper.wifimappergui.WiFiMapperGUI'
+repositories {
+    mavenCentral() // Ensure Maven Central is being used
+}
 
 dependencies {
-    compile project(':WigleDB')
-    compile project(':GeoUTM')
-    compile project(':HexBin')
+    implementation project(':WigleDB')
+    implementation project(':GeoUTM')
+    implementation project(':HexBin')
 }
 
-//jar {
-//    manifest {
-//        attributes(
-//            'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-//            'Main-Class': mainClassName
-//        )
-//    }
-//}
+tasks.jar {
+    manifest {
+        attributes(
+            'Class-Path': configurations.runtimeClasspath.collect { it.getName() }.join(' '),
+            'Main-Class': application.mainClass
+        )
+    }
+}

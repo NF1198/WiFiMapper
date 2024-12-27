@@ -220,6 +220,9 @@ public class MainGUI implements Initializable {
         webEngine.setOnError((e) -> {
             System.out.println(e.toString());
         });
+        webEngine.setOnAlert((e) -> {
+            System.out.println(e.toString());
+        });
         webEngine.loadContent(html);
 
 //        Worker<Void> worker = webEngine.getLoadWorker();
