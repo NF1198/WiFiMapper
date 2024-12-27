@@ -33,7 +33,7 @@ In `wigle-wifi-wardriving/wiglewifiwardriving/src/main/java/net/wigle/wigleandro
 
 to:
 
-`if ( true || !blank && (isNew || bigChange || (! fastMode && changeWorthy )) ) {`
+`if ( !blank && (true || isNew || bigChange || (! fastMode && changeWorthy )) ) {`
 
 This ensures that all valid location observations are stored, regardless of whether they meet the original evaluation criteria.
 
